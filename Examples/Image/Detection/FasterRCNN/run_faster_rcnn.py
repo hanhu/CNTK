@@ -12,6 +12,10 @@ from FasterRCNN_eval import compute_test_set_aps, FasterRCNN_Evaluator
 from utils.config_helpers import merge_configs
 from utils.plot_helpers import plot_test_set_results
 
+import cntk as C
+import cntk.tests.test_utils
+cntk.tests.test_utils.set_device_from_pytest_env()
+
 def get_configuration():
     # load configs for detector, base network and data set
     from FasterRCNN_config import cfg as detector_cfg
@@ -20,7 +24,8 @@ def get_configuration():
     from utils.configs.AlexNet_config import cfg as network_cfg
     # for Pascal VOC 2007 data set use: from utils.configs.Pascal_config import cfg as dataset_cfg
     # for the Grocery data set use:     from utils.configs.Grocery_config import cfg as dataset_cfg
-    from utils.configs.Grocery_config import cfg as dataset_cfg
+    # from utils.configs.Grocery_config import cfg as dataset_cfg
+    from utils.configs.Trees_config import cfg as dataset_cfg
 
     return merge_configs([detector_cfg, network_cfg, dataset_cfg])
 
@@ -28,7 +33,7 @@ def get_configuration():
 if __name__ == '__main__':
     cfg = get_configuration()
     prepare(cfg, False)
-    cntk.device.try_set_default_device(cntk.device.gpu(cfg.GPU_ID))
+    #cntk.device.try_set_default_device(cntk.device.gpu(cfg.GPU_ID))
 
     # train and test
     trained_model = train_faster_rcnn(cfg)

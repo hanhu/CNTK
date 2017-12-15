@@ -11,6 +11,10 @@ from FastRCNN_eval import compute_test_set_aps, FastRCNN_Evaluator
 from utils.config_helpers import merge_configs
 from utils.plot_helpers import plot_test_set_results
 
+import cntk as C
+import cntk.tests.test_utils
+cntk.tests.test_utils.set_device_from_pytest_env()
+
 def get_configuration():
     # load configs for detector, base network and data set
     from FastRCNN_config import cfg as detector_cfg
@@ -19,7 +23,8 @@ def get_configuration():
     from utils.configs.AlexNet_config import cfg as network_cfg
     # for Pascal VOC 2007 data set use: from utils.configs.Pascal_config import cfg as dataset_cfg
     # for the Grocery data set use:     from utils.configs.Grocery_config import cfg as dataset_cfg
-    from utils.configs.Grocery_config import cfg as dataset_cfg
+    # from utils.configs.Grocery_config import cfg as dataset_cfg
+    from utils.configs.Trees_config import cfg as dataset_cfg
 
     return merge_configs([detector_cfg, network_cfg, dataset_cfg])
 

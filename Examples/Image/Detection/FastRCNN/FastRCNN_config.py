@@ -28,14 +28,14 @@ __C.CNTK.GRAPH_TYPE = "png" # "png" or "pdf"
 # Learning parameters
 __C.CNTK.L2_REG_WEIGHT = 0.0005
 __C.CNTK.MOMENTUM_PER_MB = 0.9
-__C.CNTK.MAX_EPOCHS = 20
-__C.CNTK.LR_FACTOR = 10.0 # 10.0 is used for the Grocery example data. Start with 1.0 for other data or when using VGG16 as base model.
+__C.CNTK.MAX_EPOCHS = 10
+__C.CNTK.LR_FACTOR = 1.0 # 10.0 is used for the Grocery example data. Start with 1.0 for other data or when using VGG16 as base model.
 __C.CNTK.LR_PER_SAMPLE = [0.001] * 10 + [0.0001] * 10 + [0.00001]
 # The learning rate multiplier for all bias weights
 __C.CNTK.BIAS_LR_MULT = 2.0
 
 # Number of regions of interest [ROIs] proposals
-__C.NUM_ROI_PROPOSALS = 200 # use 2000 or more for good results
+__C.NUM_ROI_PROPOSALS = 2000 # use 2000 or more for good results
 # the minimum IoU (overlap) of a proposal to qualify for training regression targets
 __C.BBOX_THRESH = 0.5
 
@@ -45,14 +45,14 @@ __C.BBOX_NORMALIZE_MEANS = (0.0, 0.0, 0.0, 0.0)
 __C.BBOX_NORMALIZE_STDS = (0.1, 0.1, 0.2, 0.2)
 
 # Maximum number of ground truth annotations per image
-__C.INPUT_ROIS_PER_IMAGE = 50
+__C.INPUT_ROIS_PER_IMAGE = 200
 __C.IMAGE_WIDTH = 850
 __C.IMAGE_HEIGHT = 850
 
 # Use horizontally-flipped images during training?
-__C.TRAIN.USE_FLIPPED = True
+__C.TRAIN.USE_FLIPPED = False
 # If set to 'True' conv layers weights from the base model will be trained, too
-__C.TRAIN_CONV_LAYERS = True
+__C.TRAIN_CONV_LAYERS = False
 # Sigma parameter for smooth L1 loss in the RPN and the detector (DET)
 __C.SIGMA_DET_L1 = 1.0
 
@@ -62,7 +62,7 @@ __C.RESULTS_NMS_THRESHOLD = 0.5
 __C.RESULTS_NMS_CONF_THRESHOLD = 0.0
 
 # Enable plotting of results generally / also plot background boxes / also plot unregressed boxes
-__C.VISUALIZE_RESULTS = False
+__C.VISUALIZE_RESULTS = True
 __C.DRAW_NEGATIVE_ROIS = False
 __C.DRAW_UNREGRESSED_ROIS = False
 # only for plotting results: boxes with a score lower than this threshold will be considered background
